@@ -1,4 +1,4 @@
-# script to mask the required coloured region from a image
+# script to mask the required coloured region from a image...
 import cv2
 import numpy as np
 import matplotlib.pyplot as pl
