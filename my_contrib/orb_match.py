@@ -19,5 +19,7 @@ matches=bf.match(des1,des2)
 matches = sorted(matches, key = lambda x:x.distance)
 
 img3=cv2.drawMatches(img1,kp1,img2,kp2,matches[:10],None,flags=2)
-cv2.imshow('match',img3)
+# cv2.imshow('match',img3)
+
+print matches[1]
 cv2.waitKey(0)
