@@ -20,7 +20,7 @@ fil.close()
 fil=open("features.csv","r+")
 filename=csv.reader(fil)
 for row in filename:
-	print row
+	print 
 
 des1=np.array(np.loadtxt('features.csv',dtype='uint8'))
 # print (des1)

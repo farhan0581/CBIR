@@ -1,6 +1,5 @@
 # USAGE
 # python search.py --index index.csv --query queries/103100.png --result-path dataset
-
 # import the necessary packages
 from pyimagesearch.colordescriptor import ColorDescriptor
 from pyimagesearch.searcher import Searcher
