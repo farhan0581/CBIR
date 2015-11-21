@@ -17,7 +17,7 @@ def insert_data():
 		orb=cv2.ORB_create()
 		kp,desc=orb.detectAndCompute(img,None)
 		byte=desc.dumps()
-		cur.execute("""insert into prop(name,des) values(%s,%s)""",(fil,byte))
+		cur.execute("""insert ignore into prop(name,des) values(%s,%s)""",(fil,byte))
 		con.commit()
 
 def matching():
@@ -28,7 +28,7 @@ def matching():
 	kp,des=orb.detectAndCompute(query_img,None)
 	con=mdb.connect('localhost','root','','cbir')
 	cur=con.cursor()
-	query="select name,des from prop"
+	query="select name,des from prop where name like '%jpg'"
 	cur.execute(query)
 	rows=cur.fetchall()
 	res_dict={}
@@ -40,42 +40,15 @@ def matching():
 		for dis in matches[:15]:
 			val+=dis.distance
 		res_dict[row[0]]=val
+	# print res_dict
 	d = OrderedDict(sorted(res_dict.items(), key=itemgetter(1)))
-	x = itertools.islice(d.items(), 0, 4)
-	print type(x)
+	x = itertools.islice(d.items(), 0, 5)
 	for value in x:
 		to_show=cv2.imread('images/'+value[0])
 		cv2.imshow('match',to_show)
 		cv2.waitKey(0)
 	
-# results={}
-# img1=cv2.imread('images/b1.jpg')
-# img2=cv2.imread('images/b2.jpg')
-# img4=cv2.imread('images/d1.jpg')
-# orb=cv2.ORB_create()
-# kp1,des1=orb.detectAndCompute(img1,None)#type of kp1 is list
-# kp2,des2=orb.detectAndCompute(img2,None)#type of des is numpy array
-# kp3,des3=orb.detectAndCompute(img4,None)#type of des is numpy array
 
-# bf=cv2.BFMatcher(cv2.NORM_HAMMING,crossCheck=True)
-# matches1=bf.match(des1,des2)
-# matches2=bf.match(des1,des3)
-# matches1 = sorted(matches1, key = lambda x:x.distance)
-# matches2 = sorted(matches2, key = lambda x:x.distance)
-# sum1=0
-# sum2=0
-# for point in matches1[:10]:
-# 	sum1+=point.distance
-# print '##################################'
-# for point in matches2[:10]:
-# 	sum2+=point.distance
-# print sum1
-# print sum2
-# img3=cv2.drawMatches(img1,kp1,img2,kp2,matches[:50],None,flags=2)
-# byte_array=des1.dumps()
-# # np.des1.dumps()
-# # print type(st)
-# # print st
 
 # query="select des from prop where id=19"
 # # cur.execute("""insert into prop(des) values (%s)""",(byte_array))
@@ -94,6 +67,9 @@ def matching():
 # cv2.imshow('match',img3)
 # cv2.waitKey(0)
 # matching()
-# insert_data()
+# insert_data()create table testing(id int primary key not null,name varchar(40))
 matching()
+
+
+
 
