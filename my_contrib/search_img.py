@@ -1,5 +1,4 @@
 #class to search images from database on the basis of keypoints...
-
 import MySQLdb as mdb
 import cv2
 import csv
@@ -50,7 +49,7 @@ class Searcher:
 			resized = cv2.resize(to_show, dim, interpolation = cv2.INTER_AREA)
 			cv2.imshow("RESULT", resized)
 			cv2.waitKey(0)
-			
+			cv2.destroyAllWindows()	
 
 
 if __name__=='__main__':

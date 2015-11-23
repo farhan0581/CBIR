@@ -1,28 +1,43 @@
 from save_data import Data_index
 from search_img import Searcher
+from index import Index
+from search import Search
 from Tkinter import *
 import requests
 from tkFont import Font
 from bs4 import BeautifulSoup
 import tkMessageBox
 
+par_color=0
+par_orb=1
+
 def call_index():
+	global par_orb,par_color
 	path= z.get()
 	if path== '':
 		tkMessageBox.showinfo('ERROR','Please folder path!!!')
 	elif path != '':
-		di=Data_index(path)
-		di.insert_data()
-
+		if par_orb==1:
+			di=Data_index(path)
+			di.insert_data()
+		elif par_color==1:
+			i=Index(path)
+			i.main_fun()
 
 
 def call_search():
+	global par_orb,par_color
 	info = v.get()
+	path=z.get()
 	if info=='':
 		tkMessageBox.showinfo('ERROR','Please enter image name!!!')
 	elif info !='':
-		s=Searcher(info)
-		s.search_image()
+		if par_orb==1:
+			s=Searcher(info)
+			s.search_image()
+		elif par_color==1:
+			obj=Search(info,path)
+			obj.main_search()
 
 
 def cleartext():
@@ -30,13 +45,34 @@ def cleartext():
 	srch_text.delete(0,'end')
 
 
+def set_color():
+	global par_orb,par_color
+	par_color=1
+	par_orb=0
+
+def set_orb():
+	global par_orb,par_color
+	par_orb=1
+	par_color=0
 
 #GUI
-
-
-root = Tk().geometry("750x450")
+# root = Tk().geometry("750x450")
+root=Tk()
 v=StringVar()
 z=StringVar()
+var=StringVar(root)
+
+#menu button
+menu_=Menu(root)
+root.config(menu=menu_)
+sub=Menu(menu_)
+menu_.add_cascade(label="Select Method",menu=sub)
+sub.add_command(label="COLOR_histogram",command=set_color)
+sub.add_separator()
+sub.add_command(label="ORB_features",command=set_orb)
+
+label = Label(root)
+label.pack()
 tframe=Frame(root)
 tframe.pack(side=TOP,pady=10,fill=X)
 addrc=Label(tframe,text="CONTENT BASED IMAGE RETREIVAL SYSTEM",font=('bold'))
