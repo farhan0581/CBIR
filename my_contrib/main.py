@@ -36,6 +36,7 @@ def call_search():
 			s=Searcher(info)
 			s.search_image()
 		elif par_color==1:
+			path='/home/farhan/project/CBIR/my_contrib/index.csv'
 			obj=Search(info,path)
 			obj.main_search()
 
@@ -56,6 +57,7 @@ def set_orb():
 	par_color=0
 
 #GUI
+
 # root = Tk().geometry("750x450")
 root=Tk()
 v=StringVar()

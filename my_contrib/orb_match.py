@@ -37,4 +37,4 @@ img2=cv2.imread('test_dataset/d2.jpg')
 # img3=cv2.drawMatches(img1,kp1,img2,kp2,matches[:50],None,flags=2)
 cv2.imshow('match',img1)
 
-# cv2.waitKey(0)
+cv2.waitKey(0)

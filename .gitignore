@@ -1,0 +1,6 @@
+#to ignore the dataset
+/my_contrib/test_dataset/*
+/vacation-image-search-engine/dataset/*
+#to ignore compile versions
+*.pyc
+*.py~
