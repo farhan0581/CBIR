@@ -7,6 +7,7 @@ class Search:
 	def __init__(self,image_name,path):
 		self.name=image_name
 		self.file_path=path
+		#path of your folder containing images
 		self.data_path='/home/farhan/project/CBIR/my_contrib/test_dataset'
 
 	def main_search(self):

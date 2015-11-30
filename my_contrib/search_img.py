@@ -21,6 +21,7 @@ class Searcher:
 	def search_image(self):
 
 		in_img=self.image
+		#test_dataset is the name of the image folder
 		query_img=cv2.imread('test_dataset/'+in_img)
 		orb=cv2.ORB_create()
 		bf=cv2.BFMatcher(cv2.NORM_HAMMING,crossCheck=True)
@@ -39,7 +40,7 @@ class Searcher:
 			for dis in matches[:15]:
 				val+=dis.distance
 			res_dict[row[0]]=val
-		# print res_dict
+		#sorting the dictionary and display the top results
 		d = OrderedDict(sorted(res_dict.items(), key=itemgetter(1)))
 		x = itertools.islice(d.items(), 0, 5)
 		for value in x:

@@ -14,6 +14,7 @@ class Index:
 
 		# open the output index file for writing
 		output = open(self.path, "w")
+		#data contains the path to your images folder
 		data='/home/farhan/project/CBIR/my_contrib/test_dataset'
 		# use glob to grab the image paths and loop over them
 		types=['/*.png','/*.jpg']

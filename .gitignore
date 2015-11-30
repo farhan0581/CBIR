@@ -4,3 +4,5 @@
 #to ignore compile versions
 *.pyc
 *.py~
+#ignore testing files
+/my_contrib/testing/*
