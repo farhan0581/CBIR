@@ -5,7 +5,6 @@ from search import Search
 from Tkinter import *
 import requests
 from tkFont import Font
-from bs4 import BeautifulSoup
 import tkMessageBox
 
 par_color=0
